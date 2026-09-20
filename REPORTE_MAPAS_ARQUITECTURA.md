@@ -1,15 +1,15 @@
 # INFORME DE DESARROLLO Y ARQUITECTURA - EQUIPO 3 (MAPAS)
 
-## 1. Division de Responsabilidades (50/50)
+## 1. Division de Responsabilidades
 
 Se ha establecido la siguiente division tecnica para el desarrollo del modulo de mapas:
 
-### Parte A: Motor Grafico y Sensores (Desarrollador 1)
+### Parte A: Motor Grafico y Sensores
 * Implementacion de `MapViewContainer` en Jetpack Compose con integracion estricta de ciclo de vida (`DisposableEffect` y persistencia de estado).
 * Administracion de capas visuales y clustering nativo a traves de `MapClusterManager` (Manejo de fuentes `GeoJsonSource` en GPU).
 * Contrato de geolocalizacion segura `LocationProvider` con corrutinas tolerantes a fallos y manejo de tiempo de espera.
 
-### Parte B: Logica de Datos, Estado y UI Superpuesta (Desarrollador 2)
+### Parte B: Logica de Datos, Estado y UI Superpuesta
 * Construccion del componente `MapVM` (ViewModel) para la conversion de estados reactivos (`PlaceUiModel` a GeoJSON) en hilos de procesamiento de fondo.
 * Desarrollo de la interfaz superpuesta en Compose (Chips de busqueda, BottomSheet de descripcion de lugares).
 * Integracion con el motor de recomendaciones locales y algoritmos de distancia.
