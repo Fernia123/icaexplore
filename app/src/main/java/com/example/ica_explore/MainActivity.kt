@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.ica_explore.data.obtenerLugaresDeIca
+import com.example.ica_explore.util.calcularDistanciaKm
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,10 +20,10 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // ══════ PRUEBA TEMPORAL ══════
-        val lugares = obtenerLugaresDeIca()
-        Log.d("PRUEBA", "Total de lugares: ${lugares.size}")
-        Log.d("PRUEBA", "Primero: ${lugares[0].nombre} en ${lugares[0].latitud}")
-        // ═══════════════════════════════════════════════════════════════════
+        val distancia = calcularDistanciaKm(
+            lat1 = -14.0678, lng1 = -75.7286,   // Plaza de Armas de Ica
+            lat2 = -14.0876, lng2 = -75.7631    // Oasis de Huacachina
+        )
+        Log.d("PRUEBA", "Plaza → Huacachina: $distancia km")
     }
 }
