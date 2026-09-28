@@ -22,5 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
+rootProject.name = "Rutas"
 rootProject.name = "Ica-Explore"
 include(":app")
