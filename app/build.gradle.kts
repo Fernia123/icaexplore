@@ -1,3 +1,4 @@
+
 import java.util.Properties
 
 plugins {
@@ -19,6 +20,7 @@ android {
         applicationId = "com.example.rutas"
         minSdk = 24
         targetSdk = 34
+
         versionCode = 1
         versionName = "1.0"
 
@@ -27,6 +29,7 @@ android {
         // Limpia cualquier comilla extra antes de inyectar al BuildConfig
         val rawApiKey = localProperties.getProperty("ORS_API_KEY")?.replace("\"", "") ?: ""
         buildConfigField("String", "ORS_API_KEY", "\"$rawApiKey\"")
+
     }
 
     buildTypes {
@@ -35,15 +38,17 @@ android {
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
-            )
+            ),
+            compileOptions {
+          sourceCompatibility = JavaVersion.VERSION_11
+          targetCompatibility = JavaVersion.VERSION_11
         }
     }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
+            optimization {
+                enable = false
+            }
+        }
+ 
     buildFeatures {
         compose = true
         buildConfig = true
@@ -70,4 +75,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
+
 }
