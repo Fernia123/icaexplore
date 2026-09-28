@@ -1,10 +1,14 @@
 package com.example.ica_explore
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.ica_explore.data.obtenerLugaresDeIca
+import com.example.ica_explore.util.calcularDistanciaKm
+import com.example.ica_explore.util.convertirAGeoJson
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,5 +20,10 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // ═══ PRUEBA TEMPORAL: conversión a GeoJSON ═══
+        val lugares = obtenerLugaresDeIca()
+        val geoJson = convertirAGeoJson(lugares)
+        Log.d("PRUEBA", "GeoJSON generado: $geoJson")
     }
 }
