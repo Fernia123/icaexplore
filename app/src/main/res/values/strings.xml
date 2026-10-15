@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Ica-Explore</string>
+
+    <!-- Autenticación -->
+    <string name="login_subtitle">Descubre los mejores lugares de Ica</string>
+    <string name="email_hint">Correo electrónico</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="login_button">Iniciar sesión</string>
+    <string name="register_button">Registrarme</string>
+    <string name="demo_button">Ver demo (sin cuenta)</string>
+    <string name="empty_credentials">El correo y la contraseña no pueden estar vacíos</string>
+
+    <!-- Inicio -->
+    <string name="home_title">Ica-Explore</string>
+    <string name="logout_button">Salir</string>
+    <string name="categories_title">Categorías</string>
+    <string name="places_title">Lugares populares</string>
+    <string name="no_categories">No se encontraron categorías</string>
+    <string name="no_places">No se encontraron lugares populares</string>
+    <string name="rating_placeholder">★ %1$.1f  (%2$d reseñas)</string>
+    <string name="missing_credentials">Faltan credenciales de Supabase. Configura SUPABASE_URL y SUPABASE_ANON_KEY en local.properties</string>
+    <string name="demo_banner">Modo demo: mostrando datos de ejemplo de Ica</string>
 </resources>

@@ -15,6 +15,7 @@ plugins {
 android {
     buildFeatures {
         buildConfig = true
+        viewBinding = true
     }
     namespace = "com.example.ica_explore"
     compileSdk {
