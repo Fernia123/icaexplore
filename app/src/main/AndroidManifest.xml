@@ -30,6 +30,11 @@
         <activity
             android:name=".features.places.presentation.HomeActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".features.routes.presentation.RouteActivity"
+            android:exported="false"
+            android:label="Rutas de Ica" />
     </application>
 
 </manifest>

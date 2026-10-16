@@ -205,6 +205,15 @@ class HomeActivity : AppCompatActivity() {
                 place.ratingAvg,
                 place.reviewsCount
             )
+            // Conexión con el Módulo de Rutas: al pulsar un lugar se abre su cálculo de ruta
+            item.root.setOnClickListener {
+                com.example.ica_explore.features.routes.presentation.RouteActivity.start(
+                    this@HomeActivity,
+                    place.name,
+                    place.latitude,
+                    place.longitude
+                )
+            }
             binding.containerPlaces.addView(item.root)
         }
     }

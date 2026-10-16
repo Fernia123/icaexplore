@@ -27,6 +27,8 @@ android {
     defaultConfig {
         buildConfigField("String", "SUPABASE_URL", "\"${localProperties.getProperty("SUPABASE_URL") ?: ""}\"")
         buildConfigField("String", "SUPABASE_ANON_KEY", "\"${localProperties.getProperty("SUPABASE_ANON_KEY") ?: ""}\"")
+        val rawApiKey = localProperties.getProperty("ORS_API_KEY")?.replace("\"", "") ?: ""
+        buildConfigField("String", "ORS_API_KEY", "\"$rawApiKey\"")
         applicationId = "com.example.ica_explore"
         minSdk = 23
         targetSdk = 36
@@ -60,6 +62,11 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
     implementation(libs.maplibre.android)
+
+    // OpenRouteService REST client (Módulo de Rutas)
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
