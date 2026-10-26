@@ -1,9 +1,22 @@
+import java.util.Properties
+import java.io.FileInputStream
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(FileInputStream(localPropertiesFile))
+}
+
 plugins {
+        alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.compose)
 }
 
 android {
+    buildFeatures {
+        buildConfig = true
+        viewBinding = true
+    }
     namespace = "com.example.ica_explore"
     compileSdk {
         version = release(37) {
@@ -12,6 +25,8 @@ android {
     }
 
     defaultConfig {
+        buildConfigField("String", "SUPABASE_URL", "\"${localProperties.getProperty("SUPABASE_URL") ?: ""}\"")
+        buildConfigField("String", "SUPABASE_ANON_KEY", "\"${localProperties.getProperty("SUPABASE_ANON_KEY") ?: ""}\"")
         applicationId = "com.example.ica_explore"
         minSdk = 23
         targetSdk = 36
@@ -32,31 +47,21 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
-    buildFeatures {
-        compose = true   // activa Compose en este módulo
-    }
 }
 
 dependencies {
+    implementation(libs.supabase.postgrest)
+    implementation(libs.supabase.gotrue)
+    implementation(libs.ktor.client.android)
+    implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
+    implementation(libs.maplibre.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
-    // SDK de mapas MapLibre (usa OpenStreetMap, open source)
-    implementation("org.maplibre.gl:android-sdk:11.7.1")
-
-    // Plugin de marcadores/pines
-    implementation("org.maplibre.gl:android-plugin-annotation-v9:3.0.2")
-    // ═══ Compose (UI declarativa en Kotlin) ═══
-    // El BOM fija las versiones de TODAS las libs compose de abajo
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    debugImplementation(libs.androidx.compose.ui.tooling)
 }
+
