@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ica_explore.data.obtenerLugaresDeIca
-import com.example.ica_explore.util.convertirAGeoJson
+import com.example.ica_explore.util.GeoJsonConverter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -48,7 +48,7 @@ class MapVM : ViewModel() {
         // viewModelScope: zona de corrutinas que muere con el VM (sin fugas de memoria).
         viewModelScope.launch(Dispatchers.Default) {
             Log.d("MapVM", "Cocinando GeoJSON de ${lugares.size} lugares en hilo de fondo...")
-            val geoJson = convertirAGeoJson(lugares)
+            val geoJson = GeoJsonConverter.convertirAGeoJson(lugares)
             _estado.update { estadoActual ->
                 estadoActual.copy(
                     cargando = false,
@@ -71,7 +71,7 @@ class MapVM : ViewModel() {
             lugares.filter { it.categoria == categoria } // se queda con los que coinciden
         }
         viewModelScope.launch(Dispatchers.Default) {
-            val geoJson = convertirAGeoJson(listaFiltrada)
+            val geoJson = GeoJsonConverter.convertirAGeoJson(listaFiltrada)
             _estado.update { it.copy(lugares = listaFiltrada, geoJsonLugares = geoJson) }
         }
     }

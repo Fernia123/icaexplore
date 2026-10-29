@@ -26,6 +26,7 @@ import org.maplibre.android.camera.CameraPosition
 import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.MapView
 import org.maplibre.android.maps.Style
+import com.example.ica_explore.util.conectarMapVM
 
 /**
  * Pantalla de inicio: muestra un mapa de Ica de fondo con las ubicaciones de
@@ -116,6 +117,7 @@ class HomeActivity : AppCompatActivity() {
                 IcaMap.installLayers(style)
                 mapStyle = style
                 updateMapMarkers()
+                conectarMapVM(style) { currentPlaces.isEmpty() }
             }
         }
     }
